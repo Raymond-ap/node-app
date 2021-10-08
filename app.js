@@ -1,13 +1,20 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const http = require('http')
+const express = require("express");
+const bodyParser = require("body-parser");
+const http = require("http");
 
-const placesRoute = require('./routes/places-routes') // Places Router
+const placesRoute = require("./routes/places-routes"); // Places Router
+
+const app = express();
+
+app.use("/api/places", placesRoute);
 
 
-const app = express()
+// Error handling middleware
+app.use((error, req, res, next) => {
+    if(res.headerSent) {
+        return next(error)
+    }
+});
 
-app.use('/api/places',placesRoute)
 
-
-app.listen(5000)
+app.listen(5000);
