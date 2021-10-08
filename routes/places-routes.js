@@ -23,8 +23,10 @@ router.get(`/:pid`, (req, res, next) => {
   });
 
   //Handling Error
-  if(!place) {
-      res.status(404).json({Message: "Could not find a place for the provided id"})
+  if (!place) {
+    return res
+      .status(404)
+      .json({ Message: "Could not find a place for the provided id" });
   }
   res.json(place);
 });
@@ -34,6 +36,13 @@ router.get("/user/:uid", (req, res, next) => {
   const place = DUMMY_PLACES.find((p) => {
     return p.creator === userId;
   });
+  
+  //Handling Error
+  if(!place) {
+      return res
+      .status(404)
+      .json({Message: "Could not find a user for the provided id"})
+  }
   res.json(place);
 });
 
