@@ -13,7 +13,7 @@ router.post('/', placesContollers.createPlace)
 
 router.patch('/:pid', placesContollers.updatePlaceById)
 
-router.delete('/:pid', )
+router.delete('/:pid', placesContollers.deletePlace)
 
 
 
